@@ -1,0 +1,32 @@
+Select mode
+- Select a rectangular area, press space to fill, press backspace to clear
+
+Build mode
+- Create a selection screen to pick a material
+    - Implement putting different materials into the grid
+        Materials
+            - Wall (Standard white square)
+            - Start Square (Where the player spawns)
+            - End Square/Flag (Touch to complete level)
+            - Spike (Touching kills player)
+            - Star (Player must touch every star for completion)
+            - Trampoline (Jump strength is higher on this square)
+            - Sand (Block disintegrates after being touched)
+
+Task Bar
+- Add images for each tool
+
+Settings Bar
+- Add a check box to turn gravity on/off
+    - Create an input box to enter a gravity when gravity is on
+- Add a check box for snappy/smooth movement
+
+Pause Menu
+- Pressing escape should pop up a menu
+    - Menu should stop access to the rest of the software while open
+    - Button for Close, Quit, and Run
+
+PowerUps ???
+
+Save/Export Level
+    - Find a way to save level to open and run later

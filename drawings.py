@@ -1,5 +1,6 @@
 import pygame
 from colors import *
+from GridPoint import *
 
 def draw_grid(grid_size, grid_color, screen_width, screen_height, screen, grid):
     # Vertical Lines
@@ -28,17 +29,41 @@ def draw_taskbar(screen_width, screen_height, screen):
     bar = pygame.Rect(screen_width*.10, screen_height*.95, screen_width*.80, screen_height*.05)
     pygame.draw.rect(screen, WHITE, bar, 0, 0, min(screen_height,screen_width)//50, min(screen_height,screen_width)//50)
     buttons = []
-    buttons.append((0, pygame.Rect((screen_width*.10), screen_height*.95, screen_width*.08, screen_height*.05)))
+    buttons.append((1, pygame.Rect(screen_width*.10, screen_height*.95, screen_width*.08, screen_height*.05)))
     for i in range(1, 10):
         pygame.draw.line(screen, BLACK, (screen_width*.10 + ((screen_width*.80)/10)*i, screen_height*.95), (screen_width*.10 + ((screen_width*.80)/10)*i, screen_height), 5)
         buttons.append((i+1, pygame.Rect((screen_width*.10 + ((screen_width*.80)/10)*i), screen_height*.95, screen_width*.08, screen_height*.05)))
     
     for i in range(len(buttons)):
         font = pygame.font.Font(None, int(screen_width*.02))
-        text_surface = font.render(str(i+1), True, BLACK)
+        if i == 0:
+            text_surface = font.render("Grid", True, BLACK)
+        elif i == 1:
+            text_surface = font.render("Build", True, BLACK)
+        elif i == 2:
+            text_surface = font.render("Erase", True, BLACK)
+        else:
+            text_surface = font.render(str(i+1), True, BLACK)
         text_rect = text_surface.get_rect(center=buttons[i][1].center)
         screen.blit(text_surface, text_rect)
 
+    return bar, buttons
+
+def draw_buildbar(screen_width, screen_height, screen):
+    bar = pygame.Rect(screen_width*.10, screen_height*.88, screen_width*.24, screen_height*.05)
+    pygame.draw.rect(screen, WHITE, bar, 0, min(screen_height,screen_width)//50)
+    buttons = []
+    buttons.append((1, pygame.Rect(screen_width*.10, screen_height*.88, screen_width*.03, screen_height*.05)))
+    for i in range(1, 8):
+        pygame.draw.line(screen, BLACK, (screen_width*.10 + ((screen_width*.24)/8)*i, screen_height*.88), (screen_width*.10 + ((screen_width*.24)/8)*i, screen_height*.93), 5)
+        buttons.append((i+1, pygame.Rect((screen_width*.10 + ((screen_width*.24)/8)*i), screen_height*.88, screen_width*.03, screen_height*.05)))
+    
+    for i in range(len(buttons)):
+        font = pygame.font.Font(None, int(screen_width*.02))
+        text_surface = font.render(str(i+1), True, BLACK)
+        text_rect = text_surface.get_rect(center=buttons[i][1].center)
+        screen.blit(text_surface, text_rect)
+    
     return bar, buttons
 
 def draw_minimize(screen_width, screen_height, color, screen):
