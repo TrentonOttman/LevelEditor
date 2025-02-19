@@ -21,7 +21,7 @@ def draw_grid(grid_size, grid_color, screen_width, screen_height, screen, grid):
             for j in range((screen_height//grid_size)-2):
                 left = ((screen_width%grid_size)/2)+(grid_size * (i+1))
                 top = ((screen_height%grid_size)/2)+(grid_size * (j+1))
-                grid.append([False, pygame.Rect(left, top, grid_size, grid_size)])
+                grid.append(GridPoint(left, top, grid_size))
         print("MADE NEW GRID")
     return grid
 
@@ -60,7 +60,20 @@ def draw_buildbar(screen_width, screen_height, screen):
     
     for i in range(len(buttons)):
         font = pygame.font.Font(None, int(screen_width*.02))
-        text_surface = font.render(str(i+1), True, BLACK)
+        if i == 0:
+            text_surface = font.render("WAL", True, BLACK)
+        elif i == 1:
+            text_surface = font.render("SPI", True, BLACK)
+        elif i == 2:
+            text_surface = font.render("SAN", True, BLACK)
+        elif i == 3:
+            text_surface = font.render("TRA", True, BLACK)
+        elif i == 4:
+            text_surface = font.render("STA", True, BLACK)
+        elif i == 5:
+            text_surface = font.render("END", True, BLACK)
+        else:
+            text_surface = font.render(str(i+1), True, BLACK)
         text_rect = text_surface.get_rect(center=buttons[i][1].center)
         screen.blit(text_surface, text_rect)
     
